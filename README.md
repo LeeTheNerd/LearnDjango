@@ -4,8 +4,8 @@ This guide will cover the core fundamentals of the Django framework. This is mea
 
 ## Prerequisite
 
-- You are familiar with Python
-- You understand virtual environments
+- Familiar with Python
+- Familiar with virtual environments
 
 ## What is Django
 
@@ -57,7 +57,7 @@ A project is a collection of configuration and apps for a particular website. A 
 
 All Django projects begin with a project. The project is the root folder for everything associated with the project including apps. Django will create this folder with the name specified in the `django-admin` command.
 
-In the code example below. The project is called 'BlogSite'
+In the code example below. The project is called 'blogsite'
 
 `django-admin startproject WebProject`
 
@@ -97,7 +97,7 @@ To start the server, run the following command. Since there is no app/website as
 
 Once the server is started, the following information will be shown in the command line. Navigate to the local URL to see Django running.
 
-```Django version 3.0.3, using settings 'BlogSite.settings'
+```Django version 3.0.3, using settings 'blogsite.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
@@ -123,13 +123,13 @@ The command to create an app is utilized with the `manage.py` file. There are 2 
 Example:
 
 ```
-python manage.py startapp BlogSite
+python manage.py startapp blogsite
 ```
 
 This will generate the default Django files in a directory named after this application and will look like this:
 
 ```
-BlogSite
+blogsite
  ┣ migrations
  ┃ ┗ __init__.py
  ┣ admin.py
@@ -149,14 +149,14 @@ All of the files in a Django project can interact with one another. There can al
 _example_
 
 - Files in the `WebProject` directory = `project file`
-- Files in the `BlogSite` directory = `app file`
+- Files in the `blogsite` directory = `app file`
 
 ## The `settings.py` File
 
 This file is located in the project's directory.
 
 > WebProject<br>
-> ┣ BlogSite<br>
+> ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
 > ┃ ┣ admin.py<br>
@@ -219,14 +219,14 @@ INSTALLED_APPS = [
 
 In order for Django to include the newly created app when the server is ran, it will need to be added to the `INSTALLED_APPS` located in the WebProject(dir) `settings.py` file. The string that needs to be added to this list follows a specific format that maps the app to this list. The format is this:
 
-1\. The name of the app that was created followed by a period. In this guide it is "BlogSite"
+1\. The name of the app that was created followed by a period. In this guide it is "blogsite"
 
-2\. After the period, reference the `apps.py` file in the BlogSite directory followed by another period.
+2\. After the period, reference the `apps.py` file in the blogsite directory followed by another period.
 
 _apps.py located here_
 
 > WebProject<br>
-> ┣ BlogSite<br>
+> ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
 > ┃ ┣ admin.py<br>
@@ -244,20 +244,20 @@ _apps.py located here_
 from django.apps import AppConfig
 
 
-class BlogsiteConfig(AppConfig):
-    name = 'BlogSite'
+class blogsiteConfig(AppConfig):
+    name = 'blogsite'
 
 ```
 
 3\. The name of the Class inside the apps.py file is last part of the string
 
-Results = `BlogSite.apps.BlogsiteConfig`
+Results = `blogsite.apps.blogsiteConfig`
 
 Example of what it looks like in the `settings.py` file:
 
 ```python
 INSTALLED_APPS = [
-    'BlogSite.apps.BlogsiteConfig', # New App Here
+    'blogsite.apps.blogsiteConfig', # New App Here
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -316,16 +316,16 @@ Django will loop through the URLs inside the the `urlpatterns` list inside the u
 - Captured values can optionally include a converter type. For example, use `<int:name>` to capture an integer parameter. If a converter isn’t included, any string, excluding a / character, is matched.
 - There’s no need to add a leading slash, because every URL has that. For example, it’s articles, not /articles.
 
-### Note: A `urls.py` file will need to be created and added to the in the `BlogSite` directory.
+### Note: A `urls.py` file will need to be created and added to the in the `blogsite` directory.
 
 ## Creating The Apps `urls.py` File
 
-By default, the app that was created does not have a `urls.py` file. In order for Django to render the views from the application, a `urls.py` file needs to be created under the `BlogSite` directory.
+By default, the app that was created does not have a `urls.py` file. In order for Django to render the views from the application, a `urls.py` file needs to be created under the `blogsite` directory.
 
 _example_
 
 > WebProject<br>
-> ┣ BlogSite<br>
+> ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
 > ┃ ┣ admin.py<br>
@@ -370,7 +370,7 @@ In the above `urlpatters` list the `path()` function follows the correct syntax.
 
 1. The route is the blank string. This means that just the URL will render the home page.
 2. The `views.home` represents that the view is located in the views.py file and the `home()` function is what is executed for the view.
-3. The `name='blog-home` is name argument that can be used to also route to this URL.
+3. The `name='blog-home` is name argument that can be used to also route to this URL inside code blocks that are inserted into HTML code.
 
 _Note: If your server is running and you have created this file, you will see an error advising there is no home view since there has not been one created._
 
@@ -378,9 +378,9 @@ _Note: If your server is running and you have created this file, you will see an
 
 ## Map The New `urls.py` File
 
-Just like new apps need to be mapped to the project - e.g. When `BlogSite.apps.BlogsiteConfig` was added to the `INSTALLED_APPS` list in the settings.py file. The new urls.py file created under BlogSite needs to be mapped to the urls.py file under the WebProject directory.
+Just like new apps need to be mapped to the project - e.g. When `blogsite.apps.blogsiteConfig` was added to the `INSTALLED_APPS` list in the settings.py file. The new urls.py file created under blogsite needs to be mapped to the urls.py file under the WebProject directory.
 
-The urls.py file from the BlogSite directory only needs to be added one time to the WebProject's file but the import statements needs to be modified to import the `include()` function from the `urlpatterns` list.
+The urls.py file from the blogsite directory only needs to be added one time to the WebProject's file but the import statements needs to be modified to import the `include()` function from the `urlpatterns` list.
 
 The file should now look like this:
 
@@ -389,7 +389,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('BlogSite.urls')),
+    path('', include('blogsite.urls')),
     path('admin/', admin.site.urls),
 ]
 ```
@@ -414,7 +414,7 @@ urlpatterns = [
 ]
 ```
 
-A simple view can be created with the name we chose. Inside the urls.py file in the BlogSite directory a new import statement needs to be added. Also a function will need to be created and since the `urlpatterns` above is looking for a function call home, the file should look like this:
+A simple view can be created with the name we chose. Inside the urls.py file in the blogsite directory a new import statement needs to be added. Also a function will need to be created and since the `urlpatterns` above is looking for a function call home, the file should look like this:
 
 ```python
 from django.shortcuts import render
@@ -426,6 +426,40 @@ def home(request):
 ```
 
 After saving this and running the server. If you navigate to the url provided in your command line you will see a very basic website. At least it wasn't `<h1>Hello World</>`
+
+## Templates (Preferred for Views)
+
+_from Django's official documentation_
+
+Being a web framework, Django needs a convenient way to generate HTML dynamically. The most common approach relies on templates. A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
+
+### Create The Template Directory
+
+Template directories can be confusing because of the Django's template engine searches for these templates. To get started, follow the steps below:
+
+1. Create a directory inside the blogsite directory named `templates`.
+2. Inside the newly created `templates` directory, create another directory with the same name of the application. In this example, it will be `blogsite`
+3. The new `blogsite` directory will store the HTML templates. Create a file called `index.html`
+
+The folder structure for `blogsite` should now look like this:
+
+```
+blogsite/
+┣ migrations/
+┃ ┗ __init__.py
+┣ templates/
+┃ ┗ blogsite/
+┃ ┃ ┗ index.html
+┣ __init__.py
+┣ admin.py
+┣ apps.py
+┣ models.py
+┣ tests.py
+┣ urls.py
+┗ views.py
+
+```
+
 
 ---
 
