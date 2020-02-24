@@ -51,9 +51,7 @@ Python is now setup to use the Django framework.
 
 _from Django's official documentation_
 
-```
 A project is a collection of configuration and apps for a particular website. A project can contain multiple apps. An app can be in multiple projects.
-```
 
 ### _layman's terms_
 
@@ -114,9 +112,7 @@ _There will be other output on the command line in regards to warnings and migra
 
 _from Django's official documentation_
 
-```
 An app is a Web application that does something – e.g., a Weblog system, a database of public records or a small poll app
-```
 
 ### _layman's terms_
 
@@ -292,7 +288,7 @@ This was created by Django when the command `django-admin startproject WebProjec
 
 ## How Does Django Process URLs/Request?
 
-_From the Django docs_
+_from Django's official documentation_
 
 When a user requests a page from your Django-powered site, this is the algorithm the system follows to determine which Python code to execute:
 
@@ -400,7 +396,7 @@ urlpatterns = [
 
 ## The `views.py` File
 
-From The Django Docs:
+_from Django's official documentation_
 
 A view function, or view for short, is a Python function that takes a Web request and returns a Web response. This response can be the HTML contents of a Web page, or a redirect, or a 404 error, or an XML document, or an image . . . or anything, really. The view itself contains whatever arbitrary logic is necessary to return that response. This code can live anywhere you want, as long as it’s on your Python path. There’s no other requirement–no “magic,” so to speak. For the sake of putting the code somewhere, the convention is to put views in a file called views.py, placed in your project or application directory.
 
