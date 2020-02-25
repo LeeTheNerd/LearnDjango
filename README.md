@@ -425,7 +425,7 @@ def home(request):
   return HttpResponse('<h1>Hello Newman</h1>')
 ```
 
-After saving this and running the server. If you navigate to the url provided in your command line you will see a very basic website. At least it wasn't `<h1>Hello World</>`
+After saving this and running the server. If you navigate to the url provided in your command line you will see a very basic website. At least it wasn't `<h1>Hello World</h1>`
 
 ## Templates (Preferred for Views)
 
@@ -459,20 +459,54 @@ blogsite/
 ┗ views.py
 
 ```
+In this example, the .html file is just a basic bootstrap html template. 
+
+*html example*
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello Newman</title>
+  </head>
+  <body>
+    <h1>Hello Newman</h1>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+```
+### Render The Template:
+In order to render templates, they will need to be mapped into the views.oy file. The blogsite views.py file should have a `function()` that references the `index.html` file.
+
+*example*
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse('<h1>Hello Newman</h1>')
+
+
+def index(request):
+    return render(request, 'blogsite/index.html')
+
+```
+
+Now when navigating to url/index, Django will render the template.
 
 
 ---
 
-## The `admin.py` File
-
-placeholder
-
----
-
-## The `views.py` File
-
----
-
-<br>
-
-# Creating
