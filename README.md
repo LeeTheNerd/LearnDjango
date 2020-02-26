@@ -505,8 +505,7 @@ def index(request):
 
 ```
 
-Now when navigating to url/index, Django will render the template.
-
+Now when navigating the site's url, with ```/index```, Django will render the template.
 
 ---
 
