@@ -59,13 +59,13 @@ All Django projects begin with a project. The project is the root folder for eve
 
 In the code example below. The project is called 'blogsite'
 
-`django-admin startproject WebProject`
+`django-admin startproject website`
 
 This will create the following project in the file system as the root directory.
 
 ```
-WebProject
- ┣ WebProject
+website
+ ┣ website
  ┃ ┣ __pycache__
  ┃ ┃ ┣ settings.cpython-38.pyc
  ┃ ┃ ┗ __init__.cpython-38.pyc
@@ -79,7 +79,7 @@ WebProject
 
 **Make sure you navigate into this directory**
 
-Think of this directory as the server. You can run this server but there is no content associated with it. However, this is now a fully functional web server that can be started from the `manage.py` file. The files in the `WebProject` directory are all associated with integrating with the apps created and will be discussed later.
+Think of this directory as the server. You can run this server but there is no content associated with it. However, this is now a fully functional web server that can be started from the `manage.py` file. The files in the `website` directory are all associated with integrating with the apps created and will be discussed later.
 
 ### The `manage.py` File
 
@@ -148,14 +148,14 @@ All of the files in a Django project can interact with one another. There can al
 
 _example_
 
-- Files in the `WebProject` directory = `project file`
+- Files in the `website` directory = `project file`
 - Files in the `blogsite` directory = `app file`
 
 ## The `settings.py` File
 
 This file is located in the project's directory.
 
-> WebProject<br>
+> website<br>
 > ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
@@ -165,7 +165,7 @@ This file is located in the project's directory.
 > ┃ ┣ tests.py<br>
 > ┃ ┣ views.py<br>
 > ┃ ┗ \_\_init**.py<br>
-> ┣ WebProject<br>
+> ┣ website<br>
 > ┃ ┣ \_\_pycache**<br>
 > ┃ ┃ ┣ settings.cpython-38.pyc<br>
 > ┃ ┃ ┗ \_\_init**.cpython-38.pyc<br>
@@ -217,7 +217,7 @@ INSTALLED_APPS = [
 
 ## Adding An App To `settings.py`
 
-In order for Django to include the newly created app when the server is ran, it will need to be added to the `INSTALLED_APPS` located in the WebProject(dir) `settings.py` file. The string that needs to be added to this list follows a specific format that maps the app to this list. The format is this:
+In order for Django to include the newly created app when the server is ran, it will need to be added to the `INSTALLED_APPS` located in the website(dir) `settings.py` file. The string that needs to be added to this list follows a specific format that maps the app to this list. The format is this:
 
 1\. The name of the app that was created followed by a period. In this guide it is "blogsite"
 
@@ -225,7 +225,7 @@ In order for Django to include the newly created app when the server is ran, it 
 
 _apps.py located here_
 
-> WebProject<br>
+> website<br>
 > ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
@@ -273,7 +273,7 @@ INSTALLED_APPS = [
 
 Every page you create in your app need its own URL. This way your application knows what it should show to a user who opens that URL. In Django, the URLconf (URL configuration) is used. URLconf is a set of patterns that Django will try to match the requested URL to find the correct view.
 
-The `urls.py` file under the WebProject directory looks like this:
+The `urls.py` file under the website directory looks like this:
 
 ```python
 from django.contrib import admin
@@ -284,7 +284,7 @@ urlpatterns = [
 ]
 ```
 
-This was created by Django when the command `django-admin startproject WebProject` was executed.
+This was created by Django when the command `django-admin startproject website` was executed.
 
 ## How Does Django Process URLs/Request?
 
@@ -324,7 +324,7 @@ By default, the app that was created does not have a `urls.py` file. In order fo
 
 _example_
 
-> WebProject<br>
+> website<br>
 > ┣ blogsite<br>
 > ┃ ┣ migrations<br>
 > ┃ ┃ ┗ \_\_init**.py<br>
@@ -340,10 +340,10 @@ The file should contain the following:
 
 - The import statements
   - `from django.urls import path`
-    - This is to bring in Django's `django.urls.path()` function so it can be used wih the new app like the one used in the WebProject(dir) urls.py file.
+    - This is to bring in Django's `django.urls.path()` function so it can be used wih the new app like the one used in the website(dir) urls.py file.
   - `from . import views`
     - The period represents the current directory this file is in and its bringing in the views.py file.
-- A `urlpatterns` list is also needed, just like the urls.py file in the WebProject directory.
+- A `urlpatterns` list is also needed, just like the urls.py file in the website directory.
 
 ## The `urlpatterns` List
 
@@ -378,9 +378,9 @@ _Note: If your server is running and you have created this file, you will see an
 
 ## Map The New `urls.py` File
 
-Just like new apps need to be mapped to the project - e.g. When `blogsite.apps.blogsiteConfig` was added to the `INSTALLED_APPS` list in the settings.py file. The new urls.py file created under blogsite needs to be mapped to the urls.py file under the WebProject directory.
+Just like new apps need to be mapped to the project - e.g. When `blogsite.apps.blogsiteConfig` was added to the `INSTALLED_APPS` list in the settings.py file. The new urls.py file created under blogsite needs to be mapped to the urls.py file under the website directory.
 
-The urls.py file from the blogsite directory only needs to be added one time to the WebProject's file but the import statements needs to be modified to import the `include()` function from the `urlpatterns` list.
+The urls.py file from the blogsite directory only needs to be added one time to the website's file but the import statements needs to be modified to import the `include()` function from the `urlpatterns` list.
 
 The file should now look like this:
 
